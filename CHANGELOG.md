@@ -54,5 +54,5 @@ allow us to render the version headers as links by adding brackets to any
 matching headers. Any commits that don't yet belong to a Git tag will show the
 Git diff from the last tag to the master branch HEAD.
 -->
-[Unreleased]: https://github.com/timoguin/sigcli/compare/v0.1.0..HEAD
-[0.1.0]: https://github.com/timoguin/sigcli/tree/v0.1.0
+[Unreleased]: https://github.com/timoguin/sigcli/compare/v0.0.1..HEAD
+[0.0.1]: https://github.com/timoguin/sigcli/tree/v0.1.0

@@ -1,0 +1,45 @@
+package cmd
+
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+
+	"github.com/signalsciences/go-sigsci"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+)
+
+/*
+var (
+	email     string
+    token     string
+)
+*/
+
+var FOO-GO-CMD = &cobra.Command{
+	Use:   "FOO-CLI",
+	Short: "doc it bruh",
+	Run: func(cmd *cobra.Command, args []string) {
+		email = viper.GetString("email")
+		token = viper.GetString("token")
+		sc := sigsci.NewTokenClient(email, token)
+		foo, err := sc.FOO-SIGSCI-CMD()
+		if err != nil {
+			log.Fatal(err)
+		}
+		output, err := json.MarshalIndent(foo, "", "  ")
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%s\n", output)
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(FOO-GO-CMD)
+	FOO-GO-CMD.Flags().StringVarP(&email, "email", "e", "", "Sigsci username/email")
+	FOO-GO-CMD.Flags().StringVarP(&token, "token", "t", "", "Sigsci API token")
+	viper.BindPFlag("email", FOO-GO-CMD.Flags().Lookup("email"))
+	viper.BindPFlag("token", FOO-GO-CMD.Flags().Lookup("token"))
+}
