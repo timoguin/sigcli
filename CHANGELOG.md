@@ -7,25 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-<!--
-Any notes about merges to master that haven't been added to a Git tag should go
-here. When it's time to cut a new release, create a header for the new version
-below and move the content of this section down to the new version.
-
-### Added
-
-If you add any new code or functionality, document your changes here.
-
-### Changed
-
-If you change any existing code or functionality, document your changes here.
-
-### Removed
-
-If you remove any existing code or functionality, document your changes here.
-
--->
-
 Upcoming release
 
 ### Added
@@ -35,11 +16,14 @@ Upcoming release
 - `make debug`: Display generated vars used in the Makefile
 - Commit vendored modules to the repo
 - `.go-version` file set to 1.14.0
+- Include sha256 checksum file for binaries
+- `make release-draft`: Publish a draft release to GitHub
 
 ### Changed
 
 - `make build_all`: Use `go mod tidy` and `go mod vendor`
 - Determine version from Git describe output
+- Built binaries now include the version string
 
 ### Removed
 

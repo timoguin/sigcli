@@ -22,17 +22,25 @@ build: ## Build binary for the current platform
 	@echo "Building binary for your current environment"
 	go build ${LDFLAGS}
 
-build_all: ## Build multi-platform binaries
+build-all: ## Build multi-platform binaries
 	@echo "Tidying and vendoring go modules"
 	go mod tidy
 	go mod vendor
 	@echo "Building multi-platform binaries using gox"
-	gox ${LDFLAGS} -output "dist/${BIN_NAME}_{{.OS}}_{{.Arch}}"
+	gox ${LDFLAGS} -output "dist/${BIN_NAME}-${VERSION}-{{.OS}}-{{.Arch}}"
 
-release: ## Publish release binaries to GitHub
+release: gen-checksums ## Publish release binaries to GitHub
 	@echo "Publishing release binaries to GitHub"
 	@if [ "$$(git diff --stat)" ]; then echo "Git tree is dirty! Aborting"; exit 1; fi
-	ghr -t $$GITHUB_TOKEN -u ${GH_OWNER} -r ${GH_REPO} --replace `git describe --tags` dist/
+	ghr -soft ${VERSION} dist/
+
+release-draft: gen-checksums ## Publish draft release binaries to GitHub
+	@echo "Publishing draft release binaries to GitHub"
+	ghr -replace -draft -name ${VERSION} ${VERSION} dist/
+
+gen-checksums: ## Generate sha256 checksum file
+	@echo "Generating sha256 sums for binaries"
+	sha256sum dist/* > dist/${BIN_NAME}-${VERSION}.sha256sums
 
 tools: ## Install build and release tools
 	@echo "Installing build and release tools"
