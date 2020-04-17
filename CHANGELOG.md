@@ -30,9 +30,20 @@ Upcoming release
 
 ### Added
 
+- `make release`: Use ghr to publish binaries to GitHub
+- `make tools`: Install build and release tooling (gox and ghr)
+- `make debug`: Display generated vars used in the Makefile
+- Commit vendored modules to the repo
+- `.go-version` file set to 1.14.0
+
 ### Changed
 
+- `make build_all`: Use `go mod tidy` and `go mod vendor`
+- Determine version from Git describe output
+
 ### Removed
+
+- Removes LDFLAG for main.buildTime to support reproducible builds
 
 ## [0.1.0]
 
